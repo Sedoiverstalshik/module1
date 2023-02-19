@@ -1,9 +1,6 @@
 'use strict'; 
 
-const dollar = 64;
-const euro = dollar / 1.2 ; //получаем курс евро
-
-const getConverter = (euro) => {
+const getConverter = (euro, dollar = 64) => {
   const rub = (euro * 1.2) * dollar; //получаем рубли
   return rub;
   };
