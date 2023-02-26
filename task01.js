@@ -5,8 +5,7 @@ const failedStudents =['Сидоров', 'Смирнов', 'Попов'];
 
 const filter = (a, b) => {
 
-  const newArray = a.filter(item => 
-    a.includes(item) !== b.includes(item));
+  const newArray = a.filter(item => !b.includes(item));
   
   return newArray;
 }
