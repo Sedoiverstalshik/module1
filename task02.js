@@ -6,7 +6,7 @@
     let max = m;
     const newArray = [];
     for(let i = 0; i < count; i++) {
-      newArray.push(Math.ceil(Math.random() * (max - min) + min));
+      newArray.push(Math.ceil(Math.random() * (max - min + 1) + min));
     }
     return newArray;
   }
