@@ -5,18 +5,17 @@
     const min = Math.min(n, m);
     const max = Math.max(n, m);
     const newArray = [];
-    let i = 0;
 
-    while(i < count) {
+    options = ['even', 'odd'].indexOf(options);
+    while(newArray.length < count) {
       let random = Math.floor(Math.random() * (max - min + 1) + min);
-      i++;
-      if((options === 'even' && (random % 2)) || (options === 'odd' && !(random % 2))) random++;
+      if(options === -1 || options === Math.abs(random % 2)) {
         newArray.push(random);
-
+      }
     }    
     return newArray;
   }
 
-  const result = randomNumberGenerator(24, 10, 20, 'even');
+  const result = randomNumberGenerator(24, 11, -11,'even');
   console.log('result: ', result);
 }
