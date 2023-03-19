@@ -1,7 +1,6 @@
 'use strict';
 
 // 1 задание
-
 const cart = {
   items: [],
   get totalPrice() {
@@ -19,12 +18,7 @@ const cart = {
   },
   
   calculateItemPrice() {
-    let total = 0;
-    cart.items.reduce((acc, item) => {
-      total = acc + item.productPrice * item.productCount;
-      return total;
-    }, 0);
-    return total;
+    return cart.items.reduce((acc, item) => acc + item.productPrice * item.productCount, 0);
   },  
   
   clear() {
@@ -39,13 +33,15 @@ const cart = {
   },
 };
 
-cart.add('соль', 40, 2);
+cart.add('соль', 40, 3);
 cart.add('сахар', 60, 3);
 cart.add('молоко', 40, 1);
 console.log('count: ', cart.count);
 cart.print();
 // console.log('items: ', cart.items);
 // console.log('totalPrice1: ', cart.totalPrice);
+
+
 
 
 
