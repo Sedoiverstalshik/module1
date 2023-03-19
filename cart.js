@@ -3,10 +3,10 @@
 // 1 задание
 const cart = {
   items: [],
+  count: 0,
   get totalPrice() {
     return cart.calculateItemPrice();
   },
-  count: 0,
 
   add(productName, productPrice, productCount) {
     cart.items.push({productName, productPrice, productCount});
