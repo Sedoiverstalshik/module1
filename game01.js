@@ -12,7 +12,7 @@ const game = () => {
     alert('Вы ввели не число');
     game();
   }
-  if (number < botNumber) {
+  if (+number < botNumber) {
     pluse(number);
   }
   if (number > botNumber) {
@@ -32,29 +32,24 @@ const minus = (number) => {
   game(number = minus);
 };
 game();
-// while (number !== null && +number !== 100) {
-//   number = prompt('Введите число от 0 до 100')
-//   switch (true) {
-//     case number === null:
-//       alert('Игра окончена!');
-//       break;
 
-//     case isNaN(number):
-//     case +number < 1:
-//     case +number > 100:
-//       alert('Вы ввели не число');
-//       break;
 
-//     case +number > botNumber:
-//       alert('Меньше!');
-//       break;
+// 2 задание
 
-//     case +number < botNumber:
-//       alert('Больше!');
-//       break;
+{
+  const arrayNumbers = [];
+  let sum = 0;
+  const randomArray = () => {
+    const randomNumber = Math.floor(Math.random() * 11);
+    arrayNumbers.push(randomNumber);
+    sum += randomNumber;
+    if (sum > 50) {
+      return arrayNumbers;
+    } else {
+      randomArray();
+    }
+  };
 
-//     default:
-//       alert('Правильно!');
-//   }
-// }
-
+  randomArray();
+  console.log('arrayNumbers: ', arrayNumbers);
+}
