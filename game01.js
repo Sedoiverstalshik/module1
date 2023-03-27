@@ -1,55 +1,64 @@
 'use strict';
 
-let number = '';
 const botNumber = Math.ceil(Math.random() * 100);
 console.log('botNumber: ', botNumber);
 
 const game = () => {
-  if (number !== null && +number !== 100) {
-    number = prompt('Введите число от 0 до 100');
+  const number = prompt('Введите число от 0 до 100');
+  switch (true) {
+    case number === null:
+      alert('Игра окончена!');
+      return;
+    case isNaN(number):
+    case +number < 1:
+    case +number > 100:
+      alert('Вы ввели не число');
+      break;
+    case +number > botNumber:
+      alert('Меньше!');
+      break;
+    case +number < botNumber:
+      alert('Больше!');
+      break;
+    default:
+      return alert('Правильно!');
   }
-  if (isNaN(number) || +number < 1 || +number > 100) {
-    alert('Вы ввели не число');
-    game();
-  }
-  if (+number < botNumber) {
-    pluse(number);
-  }
-  if (number > botNumber) {
-    minus(number);
-  } else {
-    alert('Правильно!');
-  }
+  game();
 };
 
-const pluse = (number) => {
-  const pluse = alert('Больше!');
-  game(number = pluse);
-};
-
-const minus = (number) => {
-  const minus = alert('Меньше!');
-  game(number = minus);
-};
-game();
+// game();
 
 
 // 2 задание
 
 {
-  const arrayNumbers = [];
+  const arrN = [2, 6, 3, 5, 6, 7, 3, 1];
+  console.log('arrN: ', arrN);
+
   let sum = 0;
-  const randomArray = () => {
+  const randomArray = (array) => {
+    let arrayNumbers = [];
     const randomNumber = Math.floor(Math.random() * 11);
-    arrayNumbers.push(randomNumber);
+    console.log('randomNumber: ', randomNumber);
+    // arrayNumbers.push(randomNumber);
+    // arrayNumbers = array;
     sum += randomNumber;
+    console.log('sum: ', sum);
+    if (array) {
+      arrayNumbers = array.map((item) => sum += item);
+      console.log('sum2: ', sum);
+      // arrayNumbers.push();
+    }
+    console.log('arrayNumbers1: ', arrayNumbers);
     if (sum > 50) {
       return arrayNumbers;
     } else {
+      // arrayNumbers.push(array);
       randomArray();
     }
+    console.log('arrayNumbers: ', arrayNumbers);
   };
 
-  randomArray();
-  console.log('arrayNumbers: ', arrayNumbers);
+  randomArray(arrN);
 }
+
