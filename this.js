@@ -4,30 +4,30 @@
 
 {
   const rectangle = {
-    width: 5,
-    height: 5,
+    _width: 5,
+    _height: 5,
     get perimeter() {
-      return (this.width + this.height) * 2 + 'см';
+      return (this._width + this._height) * 2 + 'см';
     },
     get square() {
-      return this.width * this.height + 'см';
+      return this._width * this._height + 'см';
     },
-    set widths(value1) {
-      if (typeof value1 === 'number') {
-        this.width = value1;
+    set width(width) {
+      if (typeof width === 'number') {
+        this._width = width;
       }
     },
-    set heights(value2) {
-      if (typeof value2 === 'number') {
-        this.height = value2;
+    set height(height) {
+      if (typeof height === 'number') {
+        this._height = height;
       }
     },
   };
 
-  // rectangle.widths = 55;
-  // rectangle.heights = 15;
-  // console.log('rectangle.perimeter: ', rectangle.perimeter);
-  // console.log('rectangle.square: ', rectangle.square);
+  rectangle.width = 10;
+  rectangle.height = 15;
+  console.log('rectangle.perimeter: ', rectangle.perimeter);
+  console.log('rectangle.square: ', rectangle.square);
   console.log('rectangle: ', rectangle);
 }
 
