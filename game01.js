@@ -26,56 +26,19 @@ const game = () => {
   game();
 };
 
-// game();
+game();
 
 
 // 2 задание
-
 {
-  const arrN = [2, 6, 3, 7, 3, 7, 5, 4, 10, 5, 7];
-  console.log('arrN: ', arrN);
-
-  let sum = 0;
+  const newArray = [0];
   const randomArray = (array) => {
-    let arrayNumbers = [];
-    if (array) {
-      arrayNumbers = array.map((item) => sum += item);
-      console.log('arrayNumbers1: ', arrayNumbers);
-      console.log('sum1: ', sum);
-    }
+    const sum = array.reduce((acc, item) => acc + item, 0);
     if (sum > 50) {
-      return arrayNumbers;
+      return [...array];
+    } else {
+      return randomArray([...array, Math.floor(Math.random() * 11)]);
     }
-    const randomNumber = Math.floor(Math.random() * 11);
-    console.log('randomNumber: ', randomNumber);
-    arrayNumbers.push(randomNumber);
-    sum += randomNumber;
-    console.log('sum2: ', sum);
-    if (sum < 50) {
-      console.log('arrayNumbers3: ', arrayNumbers);
-      randomArray();
-    }
-    console.log('arrayNumbers4: ', arrayNumbers);
   };
-
-  randomArray();
+  console.log('newArray:', randomArray(newArray));
 }
-
-
-// let arrayNumbers = [];
-//     const randomNumber = Math.floor(Math.random() * 11);
-//     console.log('randomNumber: ', randomNumber);
-//     switch (true) {
-//       case (array && sum > 50):
-//         arrayNumbers = array.map((item) => sum += item);
-//         console.log('arrayNumbers1: ', arrayNumbers);
-//         return arrayNumbers;
-//       case (sum < 50):
-//         arrayNumbers.push(randomNumber);
-//         sum += randomNumber;
-//         console.log('sum: ', sum);
-//         console.log('arrayNumbers2: ', arrayNumbers);
-//         randomArray();
-//       case (sum > 50):
-//         return arrayNumbers;
-//     }
