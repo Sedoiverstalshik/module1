@@ -1,8 +1,8 @@
 'use strict';
 
 (() => {
-  const FIGURES_ENG = ['rock', 'scissors', 'paper'];
-  const FIGURES_RUS = ['камень', 'ножницы', 'бумага'];
+  // const FIGURES_ENG = ['rock', 'scissors', 'paper'];
+  // const FIGURES_RUS = ['камень', 'ножницы', 'бумага'];
 
   const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min);
@@ -20,14 +20,23 @@
 
     // };
 
-    const lang = language === 'EN' || language === 'ENG' ?
-      FIGURES_ENG : FIGURES_RUS;
+    // const lang = language === 'EN' || language === 'ENG' ?
+    //   FIGURES_ENG : FIGURES_RUS;
 
     return function start() {
-      const playerChoice = prompt('камень, ножницы, бумага?');/*.toLowerCase()*/
-      console.log('playerChoice: ', playerChoice);
+      const player = prompt('камень, ножницы, бумага?', '');
+
+      const stringLower = function(str) {
+        const playerNew = str;
+        if (player === null) {
+          return str = null;
+        }
+        return playerNew.trim().toLowerCase();
+      };
+
+      const playerChoice = stringLower(player);
+
       const compRandom = getRandomIntInclusive(0, 2);
-      console.log('compRandom: ', compRandom);
       let compChoice = '';
 
       switch (true) {
@@ -46,70 +55,48 @@
       console.log('compChoice: ', compChoice);
 
       switch (true) {
-        case playerChoice === null:
-          alert('Точно ли он хочет выйти?');
+        case (playerChoice === null):
+          if (confirm('Вы точно хотите выйти?')) {
+            alert(`Игрок: ${result.player} \nКомпьютер: ${result.computer}`);
+            break;
+          } else {
+            start();
+          }
+
           break;
 
-        case (playerChoice === 'камень' && compChoice === 'камень'):
-          alert(`Игрок: ${playerChoice},
-          Компьютер: ${compChoice},
-          Ничья!`);
+        case (playerChoice === '' ||
+          playerChoice !== 'камень' &&
+          playerChoice !== 'ножницы' &&
+          playerChoice !== 'бумага'):
+          alert('Вы ввели не допустимые значения?');
           start();
           break;
 
-        case (playerChoice === 'ножницы' && compChoice === 'ножницы'):
-          alert(`Игрок: ${playerChoice},
-          Компьютер: ${compChoice},
-          Ничья!`);
+        case (playerChoice === 'камень' && compChoice === 'камень' ||
+          playerChoice === 'ножницы' && compChoice === 'ножницы' ||
+          playerChoice === 'бумага' && compChoice === 'бумага'):
+          alert(`Игрок: ${playerChoice},\nКомпьютер: ${compChoice},\nНичья!`);
           start();
           break;
 
-        case (playerChoice === 'бумага' && compChoice === 'бумага'):
+        case (playerChoice === 'камень' && compChoice === 'ножницы' ||
+          playerChoice === 'ножницы' && compChoice === 'бумага' ||
+          playerChoice === 'бумага' && compChoice === 'камень'):
           alert(`Игрок: ${playerChoice},
-          Компьютер: ${compChoice},
-          Ничья!`);
+          \nКомпьютер: ${compChoice},
+          \nВы выиграли!`);
+          result.player++;
           start();
           break;
 
-        case (playerChoice === 'камень' && compChoice === 'ножницы'):
+        case (playerChoice === 'ножницы' && compChoice === 'камень' ||
+          playerChoice === 'бумага' && compChoice === 'ножницы' ||
+          playerChoice === 'камень' && compChoice === 'бумага'):
           alert(`Игрок: ${playerChoice},
-          Компьютер: ${compChoice},
-          Вы выиграли!`);
-          start();
-          break;
-
-        case (playerChoice === 'камень' && compChoice === 'бумага'):
-          alert(`Игрок: ${playerChoice},
-          Компьютер: ${compChoice},
-          Вы проиграли!`);
-          start();
-          break;
-
-        case (playerChoice === 'ножницы' && compChoice === 'камень'):
-          alert(`Игрок: ${playerChoice},
-          Компьютер: ${compChoice},
-          Вы проиграли!`);
-          start();
-          break;
-
-        case (playerChoice === 'ножницы' && compChoice === 'бумага'):
-          alert(`Игрок: ${playerChoice},
-          Компьютер: ${compChoice},
-          Вы выиграли!`);
-          start();
-          break;
-
-        case (playerChoice === 'бумага' && compChoice === 'камень'):
-          alert(`Игрок: ${playerChoice},
-          Компьютер: ${compChoice},
-          Вы выиграли!`);
-          start();
-          break;
-
-        case (playerChoice === 'бумага' && compChoice === 'ножницы'):
-          alert(`Игрок: ${playerChoice}, 
-          Компьютер: ${compChoice}, 
-          Вы проиграли!`);
+          \nКомпьютер: ${compChoice},
+          \nВы проиграли!`);
+          result.computer++;
           start();
           break;
       }
@@ -118,13 +105,3 @@
 
   window.RPS = game;
 })();
-
-// if (compRandom === 0) {
-//   alert(comp = 'камень');
-// }
-// if (compRandom === 1) {
-//   comp = 'ножницы';
-// }
-// if (compRandom === 2) {
-//   comp = 'бумага';
-// }
