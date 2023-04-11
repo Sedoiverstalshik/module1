@@ -26,7 +26,7 @@
     return function start() {
       const player = prompt('камень, ножницы, бумага?', '');
 
-      const stringLower = function(str) {
+      const stringLower = function(str) {// преобразую в нижний регистр
         const playerNew = str;
         if (player === null) {
           return str = null;
@@ -39,7 +39,7 @@
       const compRandom = getRandomIntInclusive(0, 2);
       let compChoice = '';
 
-      switch (true) {
+      switch (true) {// выводим значение хода компьютера
         case (compRandom === 0):
           compChoice = 'камень';
           break;
@@ -52,7 +52,6 @@
           compChoice = 'бумага';
           break;
       }
-      console.log('compChoice: ', compChoice);
 
       switch (true) {
         case (playerChoice === null):
